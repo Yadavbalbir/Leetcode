@@ -39,32 +39,21 @@ class Solution
 {
     public:
     //Function to check if two trees are identical.
-    void preorder(Node * root, vector<int> &arr){
-        
-        if(root==NULL){
-            return;
-        }
-        
-        arr.push_back(root->data);
-        preorder(root->left, arr);
-        preorder(root->right, arr);
-    }
+   
     bool isIdentical(Node *r1, Node *r2)
     {
         //Your Code here
-        vector<int> v1;
-        vector<int> v2;
-        preorder(r1,v1);
-        preorder(r2,v2);
-        
-        if(v1.size()!=v2.size()) return false;
-        else{
-            for(int i=0;i<v1.size();i++){
-                if(v1[i]!=v2[i]) return false;
-            }
-        }
-        
-        return true;
+       if(r1==NULL && r2==NULL) return true;
+       if(r1!=NULL && r2==NULL) return false;
+       if(r1==NULL && r2!=NULL) return false;
+       
+       bool left = isIdentical(r1->left, r2->left);
+       bool right = isIdentical(r1->right, r2->right);
+       
+       bool value = (r1->data)==(r2->data);
+       
+       if(left && right && value) return true;
+       else return false;
     }
 };
 
