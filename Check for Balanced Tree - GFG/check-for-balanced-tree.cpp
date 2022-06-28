@@ -109,7 +109,7 @@ class Solution{
         
         int lefth = check(root->left);
         int righth = check(root->right);
-        
+        if(ans==false) return 0;
         if(abs(lefth-righth)>1) ans = false;
         
         return max(lefth, righth)+1;
