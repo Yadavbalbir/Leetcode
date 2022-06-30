@@ -1,4 +1,3 @@
-// Linked List Abhi nhi padha h : When I'll read then I'll solve it again
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -12,25 +11,27 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if(head==NULL or head->next==NULL) return head;
-        ListNode* a = NULL;
-        ListNode* b = head;
-        ListNode* c = head->next;
-        
-        while(b!=NULL && c!=NULL){
-            if(a==NULL){
-                b->next = c->next;
-                c->next = b;
-                head = c;
-            }else{
-                a->next = c;
-                b->next = c->next;
-                c->next = b;
-            }
-            a = b;
-            b = b->next;
-            if(b) c = b->next;
+        ListNode* temp = head;
+        int len =0;
+        while(temp!=NULL){
+            len++;
+            temp = temp->next;
         }
+        
+        temp = head;
+        len = len/2;
+        
+        int i=0;
+        
+        while(i<len){
+            swap(temp->val, temp->next->val);
+            temp = temp->next;
+            temp = temp->next;
+            i++;
+        }
+        
         return head;
+        
+        
     }
 };
